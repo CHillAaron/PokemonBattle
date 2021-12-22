@@ -1,0 +1,53 @@
+﻿@model DashBoardView
+@{
+}
+<p>Welcome Trainer: @Model.UserName</p>
+<partial name="_pokemon" />
+
+<ul>
+    @foreach (var item in Model.AllCaughtPokemon)
+    {
+        <li>@item.CaughtPokemonName</li>
+    }
+</ul>
+@*<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Activity</th>
+            <th>Date and Time</th>
+            <th>Duration</th>
+            <th>Event Coordinator</th>
+            <th>No. of Participants</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Exam.Core.Event e in Model)
+        {
+        <tr>
+            <td><a href="/EventDetail/@e.EventId">@e.Title</a> </td>
+            <td>@e.Date.ToString("MM/dd") @@ @e.Date.ToLongTimeString() </td>
+            <td>@e.DurationTime  @e.HoursOrDays</td>
+            <td>@e.Creator.Name</td>
+            <td>@e.AttendingList.Count</td>
+            <td>
+                @if (e.Creator.UserId == ViewBag.User.UserId)
+                {
+                    <a href="/Delete/@e.EventId" class="btn btn-danger">Cancel</a>
+                }
+                else
+                {
+                    if (e.AttendingList.Any(r => r.UserId == ViewBag.User.UserId))
+                    {
+                        <a href="/Leave/@e.EventId/@ViewBag.User.UserId" class="btn-warning">Un-RSVP</a>
+                    }
+                    else
+                    {
+                        <a href="/Join/@e.EventId/@ViewBag.User.UserId" class="btn-info">RSVP</a>
+                    }
+                }
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>*@
